@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package products;
+
+option go_package = "./src/pb/products;products";
+
+message Product {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+    int32 quantity = 5;
+}
+
+message ProductList {
+    repeated Product products = 1;
+}
+
+// ProductService provides operations for managing products.
+service ProductService {
+    //create a new product
+    rpc Create(Product) returns (Product);
+    //list all products
+    rpc FindAll(Product) returns (ProductList);
+}

@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package product;
+
+option go_package = "./src/pb/product;product";
+message Product {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+}
+
+message ProductCreateRequest {
+    string name = 2;
+    string description = 3;
+    double price = 4;
+}
+message ProductUpdateRequest {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+}
+
+message ProductCollection {
+    repeated Product products = 1;
+}
+message ProductResponse {
+    Product product = 1;
+}
+// ProductService provides operations for managing products.
+service ProducService {
+    //create a new product
+    rpc Create(ProductCreateRequest) returns (ProductResponse);
+    //list all products
+    rpc FindAll(Product) returns (ProductCollection);
+    //find one product by id
+    rpc Find(Product) returns (ProductResponse);
+    //update a product 
+    rpc Update(ProductUpdateRequest) returns (ProductResponse);
+    //delete a product by id
+    rpc Delete(Product) returns (ProductResponse);
+}
