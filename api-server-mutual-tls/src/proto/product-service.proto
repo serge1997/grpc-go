@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package product;
+
+option go_package = "./src/pb/product";
+
+message ListProductListRequest {}
+
+message Product {
+    int32 id = 1;
+    string title = 2;
+}
+message ProductListResponse {
+    repeated Product products = 1;
+}
+
+//
+service ProductService {
+    //
+    rpc FindAll(ListProductListRequest) returns (ProductListResponse);
+}
+
