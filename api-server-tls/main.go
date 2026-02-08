@@ -43,6 +43,7 @@ func main() {
 	if err != nil {
 		log.Fatal("error on listenn. erro:", err)
 	}
+	defer listenner.Close()
 	tlsCredentials, err := loadTLSCredentials()
 	if err != nil {
 		log.Fatalln(err)
